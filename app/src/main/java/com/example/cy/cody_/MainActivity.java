@@ -4,6 +4,7 @@ import android.Manifest;
 import android.accounts.AccountManager;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,9 +24,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cy.cody_.Calendar.CalendarActivity;
 import com.example.cy.cody_.Closet.ClosetActivity;
+import com.example.cy.cody_.Expert.ExpertActivity;
 import com.example.cy.cody_.How_Cloth.How_clothActivity;
 import com.example.cy.cody_.Login.LoginActivity;
 import com.example.cy.cody_.Weather.GpsInfo;
@@ -183,8 +187,31 @@ public class MainActivity extends AppCompatActivity {
         buttonExpert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Expertintent = new Intent(MainActivity.this,ExpertActivity.class);
-                startActivity(Expertintent);
+                if(User_Email != null ) {
+                    Intent Expertintent = new Intent(MainActivity.this, ExpertActivity.class);
+                    Expertintent.putExtra("Email", User_Email);
+                    Expertintent.putExtra("Name", User_Name);
+                    startActivity(Expertintent);
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle(" 오늘 뭐 입지?");
+                    builder.setMessage("로그인이 필요합니다, 로그인 하시겠습니까?");
+                    builder.setPositiveButton("예",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent LoginIntent = new Intent(MainActivity.this, LoginActivity.class);  // 로그인페이지로 이동시킨후
+                                    startActivityForResult(LoginIntent, REQUEST_LOGIN);  // onActivityResult 로 이동
+                                }
+                            });
+                    builder.setNegativeButton("아니오",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(getApplicationContext(), "아니오를 선택했습니다.", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    builder.show();
+                }
             }
         });
         Main_Login_Button = (TextView) findViewById(R.id.Main_Login_button);

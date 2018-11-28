@@ -118,6 +118,7 @@ public class How_clothActivity extends AppCompatActivity {
 
         /**********************    메인에서 로그인이 되어있을때 값을 받아옴    *******************/
         Intent GetIntent = getIntent();
+        Log.e(String.valueOf(GetIntent.getExtras()),"check 2");
         Email = GetIntent.getExtras().getString("Email");
         Name = GetIntent.getExtras().getString("Name");
         /*************************************************************************************/
@@ -158,7 +159,6 @@ public class How_clothActivity extends AppCompatActivity {
                     });
             builder.show();
         }
-
     }
 
     @Override

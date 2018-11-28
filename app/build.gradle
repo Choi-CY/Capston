@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.+'
     implementation 'com.google.api-client:google-api-client-android:1.20.0' exclude module: 'httpclient'
     implementation 'com.google.http-client:google-http-client-gson:1.20.0' exclude module: 'httpclient'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 
     implementation 'com.google.apis:google-api-services-vision:v1-rev2-1.21.0' exclude module: 'httpclient'
     implementation 'com.android.volley:volley:1.0.0'  // volley 라이브러리 사용
