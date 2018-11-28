@@ -46,7 +46,11 @@
         <activity android:name=".Calendar.CalendarActivity" />
         <activity android:name=".Closet.CameraActivity" />
         <activity android:name=".Closet.UserinfoActivity" />
+<<<<<<< HEAD
         <activity android:name=".Expert.ManagerSubActivity"></activity>
+=======
+        <activity android:name=".How_Cloth.PictureSelect"></activity>
+>>>>>>> 1cd54eb3483c1f9a638c8f7590af566ebc747282
     </application>
 
 </manifest>
